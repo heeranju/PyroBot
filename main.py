@@ -9,7 +9,7 @@ PHOTO_LINK = [
  "photo Link"
  ]
 
-Muhammed = Client(
+Op = Client(
     "Pyrogram Bot",
     bot_token = os.environ["BOT_TOKEN"],
     api_id = int(os.environ["API_ID"]),
@@ -17,10 +17,10 @@ Muhammed = Client(
 )
 
 
-@Muhammed.on_message(filters.command("start")) 
+@Op.on_message(filters.command("start")) 
 async def start_message(bot, message)
     button = [[
-      InlineKeyboardButton("Mo Tech YT", callback_data="start")
+      InlineKeyboardButton("Mo Tech YT", callback_data="start",)
       ]]
     await messages.reply_photo(
         photo=random.choice(PHOTO_LINK),
@@ -30,7 +30,7 @@ async def start_message(bot, message)
 
 
 
-@Muhammad.on_callback_query()
+@Op.on_callback_query()
 async def callback(bot, msg: CallbackQuery)
     if msg.data == "start":
         await message.message.edit(
@@ -39,5 +39,5 @@ async def callback(bot, msg: CallbackQuery)
 
 
 
- Muhammed.run()
+ Op.run()
 
