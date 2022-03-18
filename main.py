@@ -9,7 +9,7 @@ PHOTO_LINK = [
  "photo Link"
  ]
 
-Op = Client(
+app = Client(
     "Pyrogram Bot",
     bot_token = os.environ["BOT_TOKEN"],
     api_id = int(os.environ["API_ID"]),
@@ -17,27 +17,45 @@ Op = Client(
 )
 
 
-@Op.on_message(filters.command("start")) 
-async def start(bot, message)
-    button = [[
-      InlineKeyboardButton("Mo Tech YT", callback_data="start",)
-      ]]
-    await messages.reply_photo(
-        photo=random.choice(PHOTO_LINK),
-        text="Hello {message.from_user.mention}   Bro Sugamano",
-        reply_markup=InlineKeyboardMarkup(buttons)
+@app.on_inline_query()
+def answer(client, inline_query):
+    inline_query.answer(
+        results=[
+            InlineQueryResultArticle(
+                title="Installation",
+                input_message_content=InputTextMessageContent(
+                    "Here's how to install **Pyrogram**"
+                ),
+                url="https://docs.pyrogram.org/intro/install",
+                description="How to install Pyrogram",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [InlineKeyboardButton(
+                            "Open website",
+                            url="https://docs.pyrogram.org/intro/install"
+                        )]
+                    ]
+                )
+            ),
+            InlineQueryResultArticle(
+                title="Usage",
+                input_message_content=InputTextMessageContent(
+                    "Here's how to use **Pyrogram**"
+                ),
+                url="https://docs.pyrogram.org/start/invoking",
+                description="How to use Pyrogram",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [InlineKeyboardButton(
+                            "Open website",
+                            url="https://docs.pyrogram.org/start/invoking"
+                        )]
+                    ]
+                )
+            )
+        ],
+        cache_time=1
     )
 
 
-
-@Op.on_callback_query()
-async def callback(bot, msg: CallbackQuery)
-    if msg.data == "start":
-        await message.message.edit(
-            text=" hello {msg.from_user.mention}  Start Text"
-        )
-
-
-
- Op.run()
-
+app.run()  # Automatically start()
