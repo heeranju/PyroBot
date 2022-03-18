@@ -1,0 +1,33 @@
+{
+    "name": "Simple Bot ✨",
+    "description": "Simple",
+    "repository": "https://github.com/",
+    "logo": "https://telegra.ph//file/fa0373692ebd143eb66ac.jpg",
+    "stack": "container",
+    "env": {
+        "BOT_TOKEN": {
+            "description": "Telegram bot token get it from  @BotFather",
+            "required": true
+        },
+        "API_ID": {
+            "description": "API_ID of your Telegram Account my.telegram.org/apps",
+            "value": "3024532"
+            "required": true
+        },
+        "API_HASH": {
+            "description": "API_HASH of your Telegram Account my.telegram.org/apps",
+            "value": "370817294c7a66e888fd06fa264f6dbd"
+             "required": true
+        },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
