@@ -2,8 +2,12 @@ from pyrogram import Client
 from pyrogram.types import (InlineQueryResultArticle, InputTextMessageContent,
                             InlineKeyboardMarkup, InlineKeyboardButton)
 
-app = Client("my_bot", bot_token="5192168337:AAGzHN3Yx8xcg8Ou5vDa830GejloyXKDtFc")
-
+app = Client(
+    "Pyrogram Bot",
+    bot_token = os.environ["BOT_TOKEN"],
+    api_id = int(os.environ["API_ID"]),
+    api_hash = os.environ["API_HASH"],
+)
 
 @app.on_inline_query()
 def answer(client, inline_query):
