@@ -1,20 +1,8 @@
-from pyrogram import Client, filter
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton 
-from pyrogram.types import CallbackQuery
-import randam
-import os
+from pyrogram import Client
+from pyrogram.types import (InlineQueryResultArticle, InputTextMessageContent,
+                            InlineKeyboardMarkup, InlineKeyboardButton)
 
-PHOTO_LINK = [
- "Photo Link",
- "photo Link"
- ]
-
-app = Client(
-    "Pyrogram Bot",
-    bot_token = os.environ["BOT_TOKEN"],
-    api_id = int(os.environ["API_ID"]),
-    api_hash = os.environ["API_HASH"],
-)
+app = Client("my_bot", bot_token="5192168337:AAGzHN3Yx8xcg8Ou5vDa830GejloyXKDtFc")
 
 
 @app.on_inline_query()
@@ -58,4 +46,4 @@ def answer(client, inline_query):
     )
 
 
-app.run()  # Automatically start()
+app.run()  # Automatically start() and idle()
