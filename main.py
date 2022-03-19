@@ -9,45 +9,48 @@ app = Client(
     api_hash = "370817294c7a66e888fd06fa264f6dbd",
 )
 
-@app.on_inline_query()
-def answer(client, inline_query):
-    inline_query.answer(
-        results=[
-            InlineQueryResultArticle(
-                title="Installation",
-                input_message_content=InputTextMessageContent(
-                    "Here's how to install **Pyrogram**"
-                ),
-                url="https://docs.pyrogram.org/intro/install",
-                description="How to install Pyrogram",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [InlineKeyboardButton(
-                            "Open website",
-                            url="https://docs.pyrogram.org/intro/install"
-                        )]
-                    ]
-                )
+home_keyboard_pm = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton(
+                text="Commands ❓", url=f"http://t.me/{BOT_USERNAME}?startgroup=new"
             ),
-            InlineQueryResultArticle(
-                title="Usage",
-                input_message_content=InputTextMessageContent(
-                    "Here's how to use **Pyrogram**"
-                ),
-                url="https://docs.pyrogram.org/start/invoking",
-                description="How to use Pyrogram",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [InlineKeyboardButton(
-                            "Open website",
-                            url="https://docs.pyrogram.org/start/invoking"
-                        )]
-                    ]
-                )
+            InlineKeyboardButton(
+                text="👤 Bot Owner",
+                user_id = 1926090919,
+            ),
+        ],
+        [
+            InlineKeyboardButton(
+                text="System Stats 🖥",
+                url=f"http://t.me/{BOT_USERNAME}?startgroup=new",
+            ),
+            InlineKeyboardButton(
+                text="🔎 Inline", switch_inline_query_current_chat = ''
+            ),
+        ],
+        [
+            InlineKeyboardButton(
+                text="✚ Add Me To Your Group",
+                url=f"http://t.me/{BOT_USERNAME}?startgroup=new",
             )
         ],
-        cache_time=1
-    )
+    ]
+)
+
+home_text_pm = (
+    f"Hey there! My name is {BOT_NAME}. I can manage your "
+    + "group with lots of useful features, feel free to "
+    + "add me to your group."
+)
+
+
+@app.on_message(filters.command("start"))
+async def start(_, message):
+await message.reply(
+            home_text_pm,
+            reply_markup=home_keyboard_pm,
+        )
 
 
 app.run()  # Automatically start() and idle()
