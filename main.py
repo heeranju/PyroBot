@@ -47,7 +47,7 @@ home_text_pm = (
 
 @app.on_message(filters.command("start"))
 async def start(_, message):
-await message.reply(
+message.reply(
             home_text_pm,
             reply_markup=home_keyboard_pm,
         )
