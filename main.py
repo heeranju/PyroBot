@@ -45,19 +45,9 @@ home_text_pm = (
 )
 
 
-@app.on_message(filters.command("start"))
-async def start(client, message):
-message.reply(
-            [
-            InlineKeyboardButton(
-                text="Commands ❓", url=f"http://t.me/{BOT_USERNAME}?startgroup=new"
-            ),
-            InlineKeyboardButton(
-                text="👤 Bot Owner",
-                user_id = 1926090919,
-            ),
-        ]
-        )
+@app.on_message(filters.text & filters.private)
+def echo(client, message):
+    message.reply(message.text)
 
 
 
