@@ -46,11 +46,12 @@ home_text_pm = (
 
 
 @app.on_message(filters.command("start"))
-async def start(_, message):
+async def start(client, message):
 message.reply(
             home_text_pm,
             reply_markup=home_keyboard_pm,
         )
+
 
 
 app.run()  # Automatically start() and idle()
